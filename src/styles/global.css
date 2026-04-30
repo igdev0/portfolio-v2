@@ -161,7 +161,7 @@
     --chart-3: var(--color-cyan-900);
     --chart-4: var(--color-amber-400);
     --chart-5: var(--color-amber-500);
-    --radius: 0.625rem;
+    --radius: 6px;
     --sidebar: var(--color-neutral-50);
     --sidebar-foreground: color-mix(in srgb, var(--color-neutral-800) 64%, var(--sidebar));
     --sidebar-primary: var(--color-neutral-800);
@@ -243,6 +243,5 @@
 
     code, kbd, samp, pre {
         font-family: var(--font-sans) var(--font-mono);
-
     }
 }
