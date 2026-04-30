@@ -1,15 +1,15 @@
 import React from 'react'
 import { Server } from 'styletron-engine-monolithic'
-import { Theme } from '@radix-ui/themes'
 import '@radix-ui/themes/styles.css'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
   title: 'Payload Blank Template',
 }
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const styletronServer = new Server();
+  const styletronServer = new Server()
   const sheets = styletronServer.getStylesheets()
   return (
     <html lang="en">
@@ -27,9 +27,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         })}
       </head>
       <body>
-        <Theme accentColor="indigo">
-          <main>{children}</main>
-        </Theme>
+        <main>{children}</main>
       </body>
     </html>
   )
