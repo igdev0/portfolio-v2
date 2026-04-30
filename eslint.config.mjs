@@ -12,7 +12,11 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
+    plugins: ['baseui'],
     rules: {
+      'baseui/deprecated-theme-api': 'warn',
+      'baseui/deprecated-component-api': 'warn',
+      'baseui/no-deep-imports': 'warn',
       '@typescript-eslint/ban-ts-comment': 'warn',
       '@typescript-eslint/no-empty-object-type': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
