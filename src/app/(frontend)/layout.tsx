@@ -1,6 +1,5 @@
 import React from 'react'
-import { Server } from 'styletron-engine-monolithic'
-import '@radix-ui/themes/styles.css'
+import "@/styles/global.css"
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
@@ -9,23 +8,8 @@ export const metadata = {
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const styletronServer = new Server()
-  const sheets = styletronServer.getStylesheets()
   return (
     <html lang="en">
-      <head>
-        {sheets.map((sheet, i) => {
-          return (
-            <style
-              key={i}
-              className="_styletron_hydrate_"
-              dangerouslySetInnerHTML={{ __html: sheet.css }}
-              media={sheet.attrs.media}
-              data-hydrate={sheet.attrs['data-hydrate']}
-            />
-          )
-        })}
-      </head>
       <body>
         <main>{children}</main>
       </body>
