@@ -1,6 +1,7 @@
 import React from 'react'
-import AppProviders from '@/app/(frontend)/providers'
 import { Server } from 'styletron-engine-monolithic'
+import { Theme } from '@radix-ui/themes'
+import '@radix-ui/themes/styles.css'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
@@ -26,9 +27,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         })}
       </head>
       <body>
-        <AppProviders>
+        <Theme accentColor="indigo">
           <main>{children}</main>
-        </AppProviders>
+        </Theme>
       </body>
     </html>
   )
