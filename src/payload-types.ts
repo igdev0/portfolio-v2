@@ -89,9 +89,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     profile: Profile;
+    navigation: Navigation;
   };
   globalsSelect: {
     profile: ProfileSelect<false> | ProfileSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
   };
   locale: null;
   widgets: {
@@ -351,6 +353,23 @@ export interface Profile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  nav?:
+    | {
+        text: string;
+        href: string;
+        external?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "profile_select".
  */
 export interface ProfileSelect<T extends boolean = true> {
@@ -359,6 +378,23 @@ export interface ProfileSelect<T extends boolean = true> {
     | T
     | {
         name?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  nav?:
+    | T
+    | {
+        text?: T;
+        href?: T;
+        external?: T;
         id?: T;
       };
   updatedAt?: T;
