@@ -22,9 +22,3 @@
         --font-serif: 'Inter', sans-serif;
     }
 }
-
-@layer components {
-    .app-header {
-
-    }
-}
