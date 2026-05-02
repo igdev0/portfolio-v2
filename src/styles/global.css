@@ -162,6 +162,7 @@
     --chart-3: var(--color-cyan-900);
     --chart-4: var(--color-amber-400);
     --chart-5: var(--color-amber-500);
+    --spacing: .33rem;
     --radius: 6px;
     --sidebar: var(--color-gray-50);
     --sidebar-foreground: color-mix(in srgb, var(--color-neutral-800) 64%, var(--sidebar));

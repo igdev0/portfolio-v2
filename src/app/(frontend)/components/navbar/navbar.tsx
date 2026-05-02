@@ -1,14 +1,13 @@
-"use client";
+'use client'
 import { Navigation } from '@/payload-types'
 import Container from '@/app/(frontend)/components/container/container'
-import { Toggle } from '@/components/ui/toggle'
-import { Moon, Sun } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import Link from 'next/dist/client/link'
+import { Button } from '@/components/ui/button'
 
 export default function Navbar(props: Navigation) {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
     <nav className="border-b border-border">
@@ -18,16 +17,15 @@ export default function Navbar(props: Navigation) {
             {item.text}
           </Link>
         ))}
-        <Toggle
+        <Button
+          size="icon"
+          variant="ghost"
           onClick={() => {
             theme.setTheme(theme.theme === 'dark' ? 'light' : 'dark')
           }}
-          render={(props, state) => (
-            <button className={cn(props.className)} {...props}>
-              <Sun />
-            </button>
-          )}
-        />
+        >
+          <Sun />
+        </Button>
       </Container>
     </nav>
   )
