@@ -154,7 +154,7 @@
     --accent: --alpha(var(--color-indigo-500) / 4%);
     --accent-foreground: var(--color-neutral-800);
     --destructive: var(--color-red-500);
-    --border: --alpha(var(--color-black) / 8%);
+    --border: --alpha(var(--color-gray-300) / 8%);
     --input: --alpha(var(--color-black) / 10%);
     --ring: var(--color-neutral-400);
     --chart-1: var(--color-orange-600);
@@ -201,7 +201,7 @@
     --accent: --alpha(var(--color-white) / 4%);
     --accent-foreground: var(--color-neutral-100);
     --destructive: color-mix(in srgb, var(--color-red-500) 90%, var(--color-white));
-    --border: --alpha(var(--color-white) / 6%);
+    --border: var(--color-gray-800);
     --input: --alpha(var(--color-white) / 8%);
     --ring: var(--color-neutral-500);
     --chart-1: var(--color-blue-700);

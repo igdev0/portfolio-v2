@@ -3,12 +3,17 @@ import { headers as getHeaders } from 'next/headers.js'
 import { getPayload } from 'payload'
 
 import config from '@/payload.config'
+import Navbar from '@/app/(frontend)/components/navbar/navbar'
 
 export default async function HomePage() {
   const headers = await getHeaders()
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
-  const profile = await payload.findGlobal({ slug: 'profile' })
-  return <div className="p-2"></div>
+  const navigation = await payload.findGlobal({ slug: 'navigation' })
+  return (
+    <div className="p-2">
+      <Navbar {...navigation}/>
+    </div>
+  )
 }

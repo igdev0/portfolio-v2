@@ -9,6 +9,7 @@ export const Navigation: GlobalConfig = {
     {
       name: 'nav',
       type: 'array',
+      localized: true,
       fields: [
         {
           type: 'group',
