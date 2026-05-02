@@ -1,5 +1,4 @@
 /* src/styles/payloadStyles.css */
-
 /* Define the Tailwind layers in the correct order */
 @layer theme, base, components, utilities;
 
@@ -14,3 +13,15 @@
 
 /* Support Payload’s dark mode toggle by adding a custom variant */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@layer theme {
+    * {
+        font-family: sans-serif, Inter;
+    }
+}
+
+@layer components {
+    .app-header {
+
+    }
+}

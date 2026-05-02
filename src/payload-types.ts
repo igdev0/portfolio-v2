@@ -86,7 +86,7 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ro') | ('en' | 'ro')[];
   globals: {
     profile: Profile;
     navigation: Navigation;
@@ -95,7 +95,7 @@ export interface Config {
     profile: ProfileSelect<false> | ProfileSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
   };
-  locale: null;
+  locale: 'en' | 'ro';
   widgets: {
     collections: CollectionsWidget;
   };
