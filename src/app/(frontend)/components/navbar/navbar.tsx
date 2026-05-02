@@ -1,7 +1,7 @@
 'use client'
 import { Navigation } from '@/payload-types'
 import Container from '@/app/(frontend)/components/container/container'
-import { Sun } from 'lucide-react'
+import { Sun, User } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import Link from 'next/dist/client/link'
 import { Button } from '@/components/ui/button'
