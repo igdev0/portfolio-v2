@@ -11,7 +11,7 @@ export default function Navbar(props: Navigation) {
 
   return (
     <nav className="border-b border-border">
-      <Container>
+      <Container className="flex items-center">
         {props.nav?.map((item) => (
           <Link href={item.href} key={item.id}>
             {item.text}
