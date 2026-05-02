@@ -33,11 +33,12 @@
         --color-base-900: var(--color-gray-900);
         --color-base-950: var(--color-gray-950);
 
-        --theme-elevation-50: var(--color-base-800);
+        --theme-elevation-50: var(--color-base-200);
     }
 
     [data-theme='dark'] {
         --theme-text: var(--color-gray-100);
         --theme-bg: var(--color-gray-900);
+        --theme-elevation-50: var(--color-base-800);
     }
 }

@@ -1,14 +1,15 @@
 "use client";
 import { Navigation } from '@/payload-types'
-import { Link, useTheme } from '@payloadcms/ui'
 import Container from '@/app/(frontend)/components/container/container'
 import { Toggle } from '@/components/ui/toggle'
 import { Moon, Sun } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { useTheme } from 'next-themes'
+import Link from 'next/dist/client/link'
 
 export default function Navbar(props: Navigation) {
   const theme = useTheme();
 
-  console.log(theme)
   return (
     <nav className="border-b border-border">
       <Container>
@@ -19,12 +20,11 @@ export default function Navbar(props: Navigation) {
         ))}
         <Toggle
           onClick={() => {
-            theme.setTheme(theme.theme === 'dark' ? 'light' : 'dark');
+            theme.setTheme(theme.theme === 'dark' ? 'light' : 'dark')
           }}
-          render={(props) => (
-            <button {...props}>
-              <Sun className="visible dark:hidden" />
-              <Moon className="hidden dark:visible" />
+          render={(props, state) => (
+            <button className={cn(props.className)} {...props}>
+              <Sun />
             </button>
           )}
         />

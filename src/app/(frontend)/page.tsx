@@ -12,8 +12,8 @@ export default async function HomePage() {
   const { user } = await payload.auth({ headers })
   const navigation = await payload.findGlobal({ slug: 'navigation' })
   return (
-    <div className="p-2">
+    <main>
       <Navbar {...navigation}/>
-    </div>
+    </main>
   )
 }
