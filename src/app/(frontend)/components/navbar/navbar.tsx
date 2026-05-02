@@ -11,7 +11,7 @@ export default function Navbar(props: Navigation) {
 
   return (
     <nav className="border-b border-border">
-      <Container className="flex items-center">
+      <Container className="flex items-center justify-between">
         <Link
           className="font-bold"
           href="/"
@@ -19,9 +19,9 @@ export default function Navbar(props: Navigation) {
             __html: `<span class="text-accent"><</span>IGDev<span class="text-accent">/></span>`,
           }}
         />
-        <div className="h-fit flex items-center gap-2">
+        <div className="h-fit flex items-center gap-3">
           {props.nav?.map((item) => (
-            <Link href={item.href} key={item.id}>
+            <Link className="nav-link" href={item.href} key={item.id}>
               {item.text}
             </Link>
           ))}

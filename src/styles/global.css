@@ -267,4 +267,20 @@
     @variant dark {
         @apply text-(--foundation) hover:text-(--foundation-300);
     }
+    &:active {
+        @apply opacity-70;
+    }
+}
+
+@utility nav-link {
+    @apply link;
+    &:hover {
+        &:before {
+            @apply opacity-100;
+        }
+    }
+    &:before {
+        content: '# ';
+        @apply text-accent opacity-0;
+    }
 }
