@@ -15,8 +15,10 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer theme {
-    * {
-        font-family: sans-serif, Inter;
+
+    :root {
+        --theme-text: var(--color-gray-900);
+        --font-body: 'Inter', sans-serif;
     }
 }
 
