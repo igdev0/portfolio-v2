@@ -285,8 +285,8 @@
     }
 }
 
-@utility brand {
-    @apply link font-bold;
+.brand {
+    @apply nav-link font-bold -translate-x-4;
     span {
         @apply text-accent;
     }
