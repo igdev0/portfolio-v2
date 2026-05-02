@@ -284,3 +284,10 @@
         @apply text-accent opacity-0;
     }
 }
+
+@utility brand {
+    @apply link font-bold;
+    span {
+        @apply text-accent;
+    }
+}

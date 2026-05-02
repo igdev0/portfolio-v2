@@ -11,12 +11,12 @@ export default function Navbar(props: Navigation) {
 
   return (
     <nav className="border-b border-border">
-      <Container className="flex items-center justify-between">
+      <Container className="flex items-center justify-between h-10">
         <Link
-          className="font-bold"
+          className="brand"
           href="/"
           dangerouslySetInnerHTML={{
-            __html: `<span class="text-accent"><</span>IGDev<span class="text-accent">/></span>`,
+            __html: `<span><</span>IGDev<span>/></span>`,
           }}
         />
         <div className="h-fit flex items-center gap-3">
