@@ -7,7 +7,7 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Profile } from '@/globals/Profile'
+import { Page } from '@/globals/Page'
 import NavbarBlock from '@/blocks/navbar'
 import { Links } from '@/collections/Links'
 
@@ -26,7 +26,7 @@ export default buildConfig({
     },
   },
   blocks: [NavbarBlock],
-  globals: [Profile],
+  globals: [Page],
   collections: [Users, Media, Links],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

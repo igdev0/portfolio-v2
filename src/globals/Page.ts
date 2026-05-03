@@ -1,6 +1,6 @@
 import { GlobalConfig } from 'payload'
 
-export const Profile: GlobalConfig = {
+export const Page: GlobalConfig = {
   slug: 'page',
   label: "Page",
   fields: [
