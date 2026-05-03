@@ -1,23 +1,34 @@
 import { GlobalConfig } from 'payload'
 
 export const Profile: GlobalConfig = {
-  slug: 'profile',
+  slug: 'page',
+  label: "Page",
   fields: [
     {
-      name: "bio",
+      name: 'navbar',
+      label: "Navigation Bar",
+      type: 'blocks',
+      blockReferences: ['navbar'],
+      localized: true,
+      blocks: []
+    },
+    {
+      name: 'bio',
       type: 'richText',
       label: 'Bio',
+      localized: true,
     },
     {
       name: 'skills',
       type: 'array',
+      localized: true,
       fields: [
         {
           name: 'name',
-          type: "text",
+          type: 'text',
           label: 'Name',
         },
       ],
-    }
+    },
   ],
 }

@@ -8,7 +8,8 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Profile } from '@/globals/Profile'
-import { Navigation } from '@/globals/Navigation'
+import NavbarBlock from '@/blocks/navbar'
+import { Links } from '@/collections/Links'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,9 +25,9 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [Profile, Navigation],
-  collections: [Users, Media],
-
+  blocks: [NavbarBlock],
+  globals: [Profile],
+  collections: [Users, Media, Links],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

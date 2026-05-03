@@ -1,14 +1,14 @@
 'use client'
 import { Navigation } from '@/payload-types'
 import Container from '@/app/(frontend)/components/container/container'
-import { Sun, User } from 'lucide-react'
+import { Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import Link from 'next/dist/client/link'
 import { Button } from '@/components/ui/button'
+import { DynamicIcon } from 'lucide-react/dynamic'
 
 export default function Navbar(props: Navigation) {
   const theme = useTheme()
-
   return (
     <nav className="border-b border-border">
       <Container className="flex items-center justify-between h-10">

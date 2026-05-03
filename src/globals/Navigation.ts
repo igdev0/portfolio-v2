@@ -1,6 +1,6 @@
 import { GlobalConfig } from 'payload'
 
-export const Navigation: GlobalConfig = {
+export const Navigation: Global Config = {
   slug: 'navigation',
   admin: {
     group: 'navigation',
