@@ -64,6 +64,27 @@ export const LinkField: Field = {
 
 export const Links: CollectionConfig = {
   slug: 'links',
-  admin: {},
-  fields: [LinkField],
+  admin: {
+    useAsTitle: 'title',
+  },
+  hooks: {
+    beforeChange: [
+      ({ data }) => {
+        if (data?.link?.text) {
+          data.title = data.link.text
+        }
+        return data
+      },
+    ],
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      admin: {
+        hidden: true,
+      },
+    },
+    LinkField,
+  ],
 }
