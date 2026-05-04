@@ -1,5 +1,4 @@
 import { Block } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const Hero: Block = {
   slug: 'hero',
@@ -16,17 +15,15 @@ export const Hero: Block = {
               name: 'title',
               maxLength: 100,
             },
-            {
-              type: 'richText',
-              editor: lexicalEditor(),
-              name: 'statement',
-            },
           ],
         },
         {
           type: 'upload',
           name: 'avatar',
           relationTo: 'media',
+          admin: {
+            className: 'flex-0',
+          },
         },
       ],
     },
