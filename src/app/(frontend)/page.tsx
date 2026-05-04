@@ -3,17 +3,15 @@ import { headers as getHeaders } from 'next/headers.js'
 import { getPayload } from 'payload'
 
 import config from '@/payload.config'
-import Navbar from '@/app/(frontend)/components/navbar'
+import { Converted } from '@/app/(frontend)/converter'
+import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 export default async function HomePage() {
   const headers = await getHeaders()
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
-  const page = await payload.findGlobal({ locale: 'en', slug: 'page' });
-  return (
-    <main>
-      <Navbar {...page.navbar} />
-    </main>
-  )
+  const page = await payload.findGlobal({ locale: 'en', slug: 'page' })
+
+  return <Converted lexicalData={page.blocks as SerializedEditorState} />
 }

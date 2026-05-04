@@ -178,10 +178,11 @@ export interface Link {
  * via the `definition` "hero".
  */
 export interface Hero {
-  content?: {
+  hero?: {
     title?: string | null;
+    statement?: string | null;
+    avatar?: (number | null) | Media;
   };
-  avatar?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
@@ -407,6 +408,26 @@ export interface Page {
     brand?: (number | null) | Media;
     links?: (number | Link)[] | null;
   };
+  hero?: {
+    title?: string | null;
+    statement?: string | null;
+    avatar?: (number | null) | Media;
+  };
+  blocks?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -421,6 +442,14 @@ export interface PageSelect<T extends boolean = true> {
         brand?: T;
         links?: T;
       };
+  hero?:
+    | T
+    | {
+        title?: T;
+        statement?: T;
+        avatar?: T;
+      };
+  blocks?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -1,19 +1,23 @@
-import { Block } from 'payload'
+import { Block, Field } from 'payload'
 
-export const Hero: Block = {
-  slug: 'hero',
+export const HeroField: Field = {
+  type: 'group',
+  name: 'hero',
   fields: [
     {
       type: 'row',
       fields: [
         {
           type: 'group',
-          name: 'content',
           fields: [
             {
               type: 'text',
               name: 'title',
               maxLength: 100,
+            },
+            {
+              type: 'textarea',
+              name: 'statement',
             },
           ],
         },
@@ -28,4 +32,9 @@ export const Hero: Block = {
       ],
     },
   ],
+}
+
+export const Hero: Block = {
+  slug: 'hero',
+  fields: [HeroField],
 }
