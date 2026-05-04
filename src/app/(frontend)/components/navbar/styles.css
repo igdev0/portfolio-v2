@@ -1,0 +1,39 @@
+@import "../../../../styles/global.css";
+
+@utility link {
+    @apply flex gap-2;
+    @apply text-(--foundation-800) hover:text-(--foundation-700);
+
+    @variant dark {
+        @apply text-(--foundation) hover:text-(--foundation-300);
+    }
+    &:active {
+        @apply opacity-70;
+    }
+}
+
+@utility nav-link {
+    @apply relative;
+    @apply link;
+    &:hover {
+        &:before {
+            @apply opacity-100;
+        }
+    }
+
+    &:before {
+        content: '# ';
+        @apply text-accent opacity-0 absolute -left-1 top-0 -translate-x-full;
+    }
+}
+
+@layer components {
+
+    .brand {
+        @apply nav-link font-bold -translate-x-4;
+
+        span {
+            @apply text-accent;
+        }
+    }
+}

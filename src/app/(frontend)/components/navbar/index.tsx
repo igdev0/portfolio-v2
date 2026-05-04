@@ -15,6 +15,7 @@ import {
   DrawerPopup,
   DrawerTrigger,
 } from '@/components/ui/drawer'
+import "./styles.css"
 
 export default function Navbar(props: Page['navbar']) {
   const theme = useTheme()
