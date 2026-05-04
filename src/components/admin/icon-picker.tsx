@@ -12,7 +12,7 @@ import {
 import { useMemo, useState } from 'react'
 
 export default function IconPicker({ path }: { path: string }) {
-  const { value, setValue } = useField<string>({ path })
+  const { value, setValue } = useField<{label: string, value: string}>({ path })
   const [query, setQuery] = useState('')
 
   const items = useMemo(() => {
@@ -27,10 +27,16 @@ export default function IconPicker({ path }: { path: string }) {
       }))
   }, [query])
 
+
   return (
-    <Combobox items={items} onValueChange={(value) => setValue(value)}>
+    <Combobox
+      items={items}
+      onValueChange={(value) => setValue(value)}
+      value={typeof value === 'string' ? JSON.parse(value).value : value}
+    >
       <ComboboxInput
         placeholder="Search icon..."
+        style={{ border: 'none' }}
         onChange={(val) => setQuery(val.target.value)}
       />
       <ComboboxPopup>
@@ -38,7 +44,7 @@ export default function IconPicker({ path }: { path: string }) {
         <ComboboxList>
           {(item) => (
             <ComboboxItem key={item.value} value={item}>
-              <DynamicIcon name={item.value} />
+              <DynamicIcon name={item.value} className="mr-2" />
               {item.label}
             </ComboboxItem>
           )}
