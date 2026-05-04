@@ -1,7 +1,7 @@
 import { Block, Field } from 'payload'
 
 export const LinkField: Field = {
-  type: 'row',
+  type: 'group',
   fields: [
     {
       type: 'row',

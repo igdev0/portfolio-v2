@@ -271,6 +271,7 @@
 }
 
 @utility nav-link {
+    @apply relative;
     @apply link;
     &:hover {
         &:before {
@@ -279,7 +280,7 @@
     }
     &:before {
         content: '# ';
-        @apply text-accent opacity-0;
+        @apply text-accent opacity-0 absolute -left-1 top-0 -translate-x-full;
     }
 }
 
