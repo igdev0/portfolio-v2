@@ -1,5 +1,5 @@
 'use client'
-import { useField } from '@payloadcms/ui'
+import { useEditDepth, useField } from '@payloadcms/ui'
 import { DynamicIcon, dynamicIconImports } from 'lucide-react/dynamic'
 import {
   Combobox,
@@ -9,10 +9,10 @@ import {
   ComboboxList,
   ComboboxPopup,
 } from '@/components/ui/combobox'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export default function IconPicker({ path }: { path: string }) {
-  const { value, setValue } = useField<{label: string, value: string}>({ path })
+  const { value, setValue } = useField<string>({ path })
   const [query, setQuery] = useState('')
 
   const items = useMemo(() => {
@@ -25,25 +25,30 @@ export default function IconPicker({ path }: { path: string }) {
         label: item,
         value: item,
       }))
-  }, [query])
+  }, [query]);
 
+  useEffect(() => {
+    value && setQuery(value)
+  }, [value])
 
   return (
     <Combobox
       items={items}
-      onValueChange={(value) => setValue(value)}
-      value={typeof value === 'string' ? JSON.parse(value).value : value}
+      onValueChange={(value) => {
+        setValue(value);
+      }}
+      value={value}
     >
       <ComboboxInput
         placeholder="Search icon..."
+        onChange={(e) => setQuery(e.target.value)}
         style={{ border: 'none' }}
-        onChange={(val) => setQuery(val.target.value)}
       />
       <ComboboxPopup>
         <ComboboxEmpty>No results found.</ComboboxEmpty>
         <ComboboxList>
           {(item) => (
-            <ComboboxItem key={item.value} value={item}>
+            <ComboboxItem key={item.value} value={item.value}>
               <DynamicIcon name={item.value} className="mr-2" />
               {item.label}
             </ComboboxItem>
