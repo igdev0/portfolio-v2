@@ -1,5 +1,4 @@
 import { Block } from 'payload'
-import { IconOptions } from '@/collections/Links'
 
 export const LinkBlock: Block = {
   slug: 'link',
@@ -27,8 +26,12 @@ export const LinkBlock: Block = {
       fields: [
         {
           name: 'icon',
-          type: 'select',
-          options: IconOptions,
+          type: 'text',
+          admin: {
+            components: {
+              Field: "@/components/admin/icon-picker"
+            }
+          }
         },
         {
           name: 'icon-position',

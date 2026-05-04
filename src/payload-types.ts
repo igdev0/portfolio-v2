@@ -67,10 +67,13 @@ export interface Config {
   };
   blocks: {
     navbar: Navbar;
+    hero: Hero;
+    link: Link1;
   };
   collections: {
     users: User;
     media: Media;
+    links: Link;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +83,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    links: LinksSelect<false> | LinksSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -90,10 +94,10 @@ export interface Config {
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ro') | ('en' | 'ro')[];
   globals: {
-    profile: Profile;
+    page: Page;
   };
   globalsSelect: {
-    profile: ProfileSelect<false> | ProfileSelect<true>;
+    page: PageSelect<false> | PageSelect<true>;
   };
   locale: 'en' | 'ro';
   widgets: {
@@ -128,10 +132,74 @@ export interface UserAuthOperations {
  * via the `definition` "navbar".
  */
 export interface Navbar {
-  links?: string | null;
+  brand?: (number | null) | Media;
+  links?: (number | Link)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'navbar';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links".
+ */
+export interface Link {
+  id: number;
+  title?: string | null;
+  link?: {
+    href?: string | null;
+    text?: string | null;
+    icon?: string | null;
+    'icon-position'?: ('left' | 'right') | null;
+    external?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero".
+ */
+export interface Hero {
+  content?: {
+    title?: string | null;
+  };
+  avatar?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "link".
+ */
+export interface Link1 {
+  href?: string | null;
+  text?: string | null;
+  icon?: string | null;
+  'icon-position'?: ('left' | 'right') | null;
+  external?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'link';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -157,25 +225,6 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -208,6 +257,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'links';
+        value: number | Link;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -293,6 +346,24 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links_select".
+ */
+export interface LinksSelect<T extends boolean = true> {
+  title?: T;
+  link?:
+    | T
+    | {
+        href?: T;
+        text?: T;
+        icon?: T;
+        'icon-position'?: T;
+        external?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -333,48 +404,23 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "profile".
+ * via the `definition` "page".
  */
-export interface Profile {
+export interface Page {
   id: number;
-  navbar?: Navbar[] | null;
-  bio?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  skills?:
-    | {
-        name?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  /**
+   * Choose from 60+ atomic components.
+   */
+  block?: (Navbar | Hero | Link1)[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "profile_select".
+ * via the `definition` "page_select".
  */
-export interface ProfileSelect<T extends boolean = true> {
-  navbar?: T | {};
-  bio?: T;
-  skills?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
+export interface PageSelect<T extends boolean = true> {
+  block?: T | {};
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -1,7 +1,4 @@
 import type { CollectionConfig, Field } from 'payload'
-import { dynamicIconImports, IconName } from 'lucide-react/dynamic'
-
-export const IconOptions = Object.keys(dynamicIconImports) as IconName[]
 
 export const LinkField: Field = {
   name: 'link',
@@ -31,8 +28,7 @@ export const LinkField: Field = {
       fields: [
         {
           name: 'icon',
-          type: 'select',
-          options: IconOptions,
+          type: 'text',
         },
         {
           name: 'icon-position',

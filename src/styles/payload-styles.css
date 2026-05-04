@@ -10,9 +10,7 @@
 
 /* Import Tailwind utilities */
 @import 'tailwindcss/utilities.css' layer(utilities);
-
-/* Support Payload’s dark mode toggle by adding a custom variant */
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@import "./shared.css";
 
 @layer theme {
 
