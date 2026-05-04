@@ -1,5 +1,5 @@
 'use client'
-import { useEditDepth, useField } from '@payloadcms/ui'
+import { useField } from '@payloadcms/ui'
 import { DynamicIcon, dynamicIconImports } from 'lucide-react/dynamic'
 import {
   Combobox,
@@ -17,15 +17,13 @@ export default function IconPicker({ path }: { path: string }) {
 
   const items = useMemo(() => {
     return Object.keys(dynamicIconImports)
-      .filter((item) =>
-        item.toLowerCase().includes(query.toLowerCase())
-      )
+      .filter((item) => item.toLowerCase().includes(query.toLowerCase()))
       .slice(0, 100)
       .map((item) => ({
         label: item,
         value: item,
       }))
-  }, [query]);
+  }, [query])
 
   useEffect(() => {
     value && setQuery(value)
@@ -35,7 +33,7 @@ export default function IconPicker({ path }: { path: string }) {
     <Combobox
       items={items}
       onValueChange={(value) => {
-        setValue(value);
+        setValue(value)
       }}
       value={value}
     >
