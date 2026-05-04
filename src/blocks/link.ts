@@ -1,7 +1,7 @@
-import { Block } from 'payload'
+import { Block, Field } from 'payload'
 
-export const LinkBlock: Block = {
-  slug: 'link',
+export const LinkField: Field = {
+  type: 'row',
   fields: [
     {
       type: 'row',
@@ -27,12 +27,12 @@ export const LinkBlock: Block = {
         {
           name: 'icon',
           type: 'text',
-          label: "Icon",
+          label: 'Icon',
           admin: {
             components: {
-              Field: "@/components/admin/icon-picker"
-            }
-          }
+              Field: '@/components/admin/icon-picker',
+            },
+          },
         },
         {
           name: 'icon-position',
@@ -58,6 +58,21 @@ export const LinkBlock: Block = {
           },
         },
       ],
+    },
+  ],
+}
+
+export const LinkBlock: Block = {
+  slug: 'link',
+  interfaceName: "LinkField",
+  fields: [
+    LinkField,
+    {
+      name: 'title',
+      type: 'text',
+      admin: {
+        hidden: true,
+      },
     },
   ],
 }

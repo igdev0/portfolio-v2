@@ -259,6 +259,7 @@
 }
 
 @utility link {
+    @apply flex gap-2;
     @apply text-(--foundation-800) hover:text-(--foundation-700);
 
     @variant dark {

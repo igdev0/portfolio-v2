@@ -68,7 +68,7 @@ export interface Config {
   blocks: {
     navbar: Navbar;
     hero: Hero;
-    link: Link1;
+    link: LinkField;
   };
   collections: {
     users: User;
@@ -132,8 +132,10 @@ export interface UserAuthOperations {
  * via the `definition` "navbar".
  */
 export interface Navbar {
-  brand?: (number | null) | Media;
-  links?: (number | Link)[] | null;
+  navbar?: {
+    brand?: (number | null) | Media;
+    links?: (number | Link)[] | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'navbar';
@@ -163,14 +165,11 @@ export interface Media {
  */
 export interface Link {
   id: number;
-  title?: string | null;
-  link?: {
-    href?: string | null;
-    text?: string | null;
-    icon?: string | null;
-    'icon-position'?: ('left' | 'right') | null;
-    external?: boolean | null;
-  };
+  href?: string | null;
+  text?: string | null;
+  icon?: string | null;
+  'icon-position'?: ('left' | 'right') | null;
+  external?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -189,14 +188,15 @@ export interface Hero {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "link".
+ * via the `definition` "LinkField".
  */
-export interface Link1 {
+export interface LinkField {
   href?: string | null;
   text?: string | null;
   icon?: string | null;
   'icon-position'?: ('left' | 'right') | null;
   external?: boolean | null;
+  title?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'link';
@@ -349,16 +349,11 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "links_select".
  */
 export interface LinksSelect<T extends boolean = true> {
-  title?: T;
-  link?:
-    | T
-    | {
-        href?: T;
-        text?: T;
-        icon?: T;
-        'icon-position'?: T;
-        external?: T;
-      };
+  href?: T;
+  text?: T;
+  icon?: T;
+  'icon-position'?: T;
+  external?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -408,10 +403,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Page {
   id: number;
-  /**
-   * Choose from 60+ atomic components.
-   */
-  block?: (Navbar | Hero | Link1)[] | null;
+  navbar?: {
+    brand?: (number | null) | Media;
+    links?: (number | Link)[] | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -420,7 +415,12 @@ export interface Page {
  * via the `definition` "page_select".
  */
 export interface PageSelect<T extends boolean = true> {
-  block?: T | {};
+  navbar?:
+    | T
+    | {
+        brand?: T;
+        links?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

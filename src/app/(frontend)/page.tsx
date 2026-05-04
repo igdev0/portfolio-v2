@@ -11,10 +11,9 @@ export default async function HomePage() {
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
   const page = await payload.findGlobal({ locale: 'en', slug: 'page' });
-  console.log(page)
   return (
     <main>
-      {/*<Navbar/>*/}
+      <Navbar {...page.navbar} />
     </main>
   )
 }
