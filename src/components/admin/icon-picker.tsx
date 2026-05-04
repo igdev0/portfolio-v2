@@ -11,10 +11,10 @@ import {
 } from '@/components/ui/combobox'
 import { useEffect, useMemo, useState } from 'react'
 
-export default function IconPicker({ path }: { path: string }) {
+export default function IconPicker(props: { path: string; field: { label: string, name: string } }) {
+  const { path, field } = props
   const { value, setValue } = useField<string>({ path })
   const [query, setQuery] = useState('')
-
   const items = useMemo(() => {
     return Object.keys(dynamicIconImports)
       .filter((item) => item.toLowerCase().includes(query.toLowerCase()))
@@ -30,29 +30,33 @@ export default function IconPicker({ path }: { path: string }) {
   }, [value])
 
   return (
-    <Combobox
-      items={items}
-      onValueChange={(value) => {
-        setValue(value)
-      }}
-      value={value}
-    >
-      <ComboboxInput
-        placeholder="Search icon..."
-        onChange={(e) => setQuery(e.target.value)}
-        style={{ border: 'none' }}
-      />
-      <ComboboxPopup>
-        <ComboboxEmpty>No results found.</ComboboxEmpty>
-        <ComboboxList>
-          {(item) => (
-            <ComboboxItem key={item.value} value={item.value}>
-              <DynamicIcon name={item.value} className="mr-2" />
-              {item.label}
-            </ComboboxItem>
-          )}
-        </ComboboxList>
-      </ComboboxPopup>
-    </Combobox>
+    <>
+      <Combobox
+        items={items}
+        onValueChange={(value) => {
+          setValue(value)
+        }}
+        value={value}
+      >
+        <label htmlFor="icon-picker">{field.label ?? field.name}</label>
+        <ComboboxInput
+          name="icon-picker"
+          placeholder="Search icon..."
+          onChange={(e) => setQuery(e.target.value)}
+          style={{ border: 'none' }}
+        />
+        <ComboboxPopup>
+          <ComboboxEmpty>No results found.</ComboboxEmpty>
+          <ComboboxList>
+            {(item) => (
+              <ComboboxItem key={item.value} value={item.value}>
+                <DynamicIcon name={item.value} className="mr-2" />
+                {item.label}
+              </ComboboxItem>
+            )}
+          </ComboboxList>
+        </ComboboxPopup>
+      </Combobox>
+    </>
   )
 }

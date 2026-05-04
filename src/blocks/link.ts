@@ -27,6 +27,7 @@ export const LinkBlock: Block = {
         {
           name: 'icon',
           type: 'text',
+          label: "Icon",
           admin: {
             components: {
               Field: "@/components/admin/icon-picker"
