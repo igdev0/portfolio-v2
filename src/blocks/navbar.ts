@@ -1,7 +1,5 @@
 import { Block } from 'payload'
 
-export const NavbarLink = [];
-
 const NavbarBlock: Block = {
   slug: 'navbar',
   fields: [

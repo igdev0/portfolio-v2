@@ -2,33 +2,18 @@ import { GlobalConfig } from 'payload'
 
 export const Page: GlobalConfig = {
   slug: 'page',
-  label: "Page",
+  label: 'Page',
   fields: [
     {
-      name: 'navbar',
-      label: "Navigation Bar",
+      name: 'block',
+      admin: {
+        description: "Choose from 60+ atomic components.",
+      },
+      label: 'Add block',
       type: 'blocks',
-      blockReferences: ['navbar'],
+      blockReferences: ['navbar', 'hero', 'link'],
       localized: true,
-      blocks: []
-    },
-    {
-      name: 'bio',
-      type: 'richText',
-      label: 'Bio',
-      localized: true,
-    },
-    {
-      name: 'skills',
-      type: 'array',
-      localized: true,
-      fields: [
-        {
-          name: 'name',
-          type: 'text',
-          label: 'Name',
-        },
-      ],
+      blocks: [],
     },
   ],
 }

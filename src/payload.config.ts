@@ -1,5 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -10,6 +10,8 @@ import { Media } from './collections/Media'
 import { Page } from '@/globals/Page'
 import NavbarBlock from '@/blocks/navbar'
 import { Links } from '@/collections/Links'
+import { Hero } from '@/blocks/hero'
+import { LinkBlock } from '@/blocks/link'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,10 +27,14 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  blocks: [NavbarBlock],
+  blocks: [NavbarBlock, Hero, LinkBlock],
   globals: [Page],
   collections: [Users, Media, Links],
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features({ defaultFeatures, rootFeatures }) {
+      return [...defaultFeatures, BlocksFeature({ blocks: [NavbarBlock, Hero, LinkBlock] })]
+    },
+  }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
