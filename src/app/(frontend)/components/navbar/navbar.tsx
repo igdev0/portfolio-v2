@@ -28,7 +28,7 @@ export default function Navbar(props: Page['navbar']) {
             __html: `<span><</span>IGDev<span>/></span>`,
           }}
         />
-        <div className="h-fit items-center gap-3 flex">
+        <div className="h-fit flex items-center gap-1">
           <div className="hidden lg:flex gap-6">
             {props?.links
               ?.filter((item) => typeof item !== 'number')
